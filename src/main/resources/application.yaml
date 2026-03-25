@@ -1,0 +1,39 @@
+# En local: exporta SPRING_PROFILES_ACTIVE=dev (o --spring.profiles.active=dev) para Thymeleaf/estáticos sin caché y DevTools.
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:mem:astrourl;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.h2.Driver}
+
+  jpa:
+    hibernate:
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+    show-sql: ${SPRING_JPA_SHOW_SQL:true}
+
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:localhost}
+      port: ${SPRING_REDIS_PORT:6379}
+
+  h2:
+    console:
+      enabled: true
+
+server:
+  # Render (y otros PaaS) suelen inyectar `PORT`; usamos el valor si existe.
+  port: ${PORT:8080}
+  # Evita que herramientas locales/proxy inyecten otro host/puerto vía X-Forwarded-* (p. ej. estáticos a :8888).
+  forward-headers-strategy: none
+
+app:
+  limits:
+    guest-weekly-limit: 10
+  # Códigos cortos aleatorios (estilo producción), longitud entre 4 y 8
+  shortcode:
+    length: ${APP_SHORTCODE_LENGTH:5}
+  security:
+    jwt:
+      # Base64 de 32+ bytes. En producción: definir APP_SECURITY_JWT_SECRET.
+      secret: ${APP_SECURITY_JWT_SECRET:QXN0cm9VUkxEZW1vU2VjcmV0S2V5Rm9ySldUMjAyNl8zMl9ieXRlcw==}
+      expiration-ms: ${APP_SECURITY_JWT_EXPIRATION_MS:86400000}

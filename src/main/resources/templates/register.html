@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroURL</title>
+    <style>
+        html { background: #05040a; color: #ece8f4; }
+        body { margin: 0; min-height: 100vh; }
+        a { color: #c8f73c; text-decoration: none; }
+        a:hover { color: #5fffd6; }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,425&family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/space-theme.css?v=9">
+</head>
+<body>
+<canvas id="starfield"></canvas>
+<div class="nebula-layer"></div>
+<div class="noise" aria-hidden="true"></div>
+<div class="scanline" aria-hidden="true"></div>
+
+<main class="auth-layout">
+    <div class="auth-frame">
+        <span class="mark">Registro</span>
+        <h1>Crear cuenta</h1>
+        <p class="auth-sub">Elige un correo y una contraseña de <strong>al menos 8 caracteres</strong>. El correo será tu usuario para entrar después.</p>
+
+        <form id="registerForm" class="stack">
+            <label for="email">Correo electrónico</label>
+            <input id="email" type="email" required autocomplete="username" inputmode="email">
+            <label for="password">Contraseña</label>
+            <input id="password" type="password" minlength="8" required autocomplete="new-password">
+            <button type="submit" class="primary-btn">Crear cuenta</button>
+        </form>
+
+        <p class="linkish">¿Ya tienes cuenta? <a href="/login">Entrar</a> · <a href="/">Volver al inicio</a></p>
+        <p id="messageBox" class="message" role="status"></p>
+    </div>
+</main>
+
+<script src="/js/starfield.js?v=8"></script>
+<script src="/js/app.js?v=8"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+# Perfil test: H2 en memoria, sin depender de Redis/MySQL externos
+spring:
+  datasource:
+    url: jdbc:h2:mem:astrourl_test;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 16379
+
+app:
+  shortcode:
+    length: 5
+  security:
+    jwt:
+      # Base64 de exactamente 32 bytes (HS256)
+      secret: YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXoxMjM0NTY=
+      expiration-ms: 3600000

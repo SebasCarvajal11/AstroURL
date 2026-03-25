@@ -1,0 +1,13 @@
+# Perfil local: activar con SPRING_PROFILES_ACTIVE=dev o --spring.profiles.active=dev
+# Plantillas y estáticos sin caché agresiva; con spring-boot-devtools el servidor se reinicia solo al compilar.
+
+spring:
+  thymeleaf:
+    cache: false
+  web:
+    resources:
+      cache:
+        period: 0
+  devtools:
+    livereload:
+      enabled: true
