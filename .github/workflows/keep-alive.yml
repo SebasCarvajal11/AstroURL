@@ -1,0 +1,22 @@
+name: Keep Render Apps Awake
+
+on:
+  schedule:
+    # Se ejecuta cada 14 minutos.
+    # Entre las 13:00 y las 23:00 en horario UTC (que equivale a 8:00 AM - 6:00 PM en Colombia).
+    # Solo de Lunes a Viernes (días 1 al 5).
+    - cron: '*/14 13-23 * * 1-5'
+  
+  # Esta línea es clave: te permite ejecutar el script manualmente con un botón para probarlo
+  workflow_dispatch:
+
+jobs:
+  ping-services:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping AstroURL
+        run: curl -s https://astrourls.onrender.com/ping
+        
+      - name: Ping Proyecto 2
+        # Reemplaza la URL de abajo con la de tu otro proyecto
+        run: curl -s https://TU-SEGUNDO-PROYECTO.onrender.com/ping
