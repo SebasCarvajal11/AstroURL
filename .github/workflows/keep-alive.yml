@@ -19,4 +19,4 @@ jobs:
         
       - name: Ping Proyecto 2
         # Reemplaza la URL de abajo con la de tu otro proyecto
-        run: curl -s https://TU-SEGUNDO-PROYECTO.onrender.com/ping
+        run: curl -s https://andina-trading-portfolio.onrender.com/ping
