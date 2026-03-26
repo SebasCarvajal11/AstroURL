@@ -1,0 +1,16 @@
+name: Keep Andina Trading Awake
+
+on:
+  schedule:
+    # Lun a Vie: 8:00 AM a 4:59 PM (Hora Col) -> 13:00-21:59 UTC
+    # Optimizado para reclutadores en horario laboral
+    - cron: '*/14 13-21 * * 1-5'
+  
+  workflow_dispatch:
+
+jobs:
+  ping-andina:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Andina Trading
+        run: curl -s https://andina-trading-portfolio.onrender.com/ping
