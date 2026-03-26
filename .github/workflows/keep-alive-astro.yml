@@ -1,0 +1,19 @@
+name: Keep AstroURL Awake
+
+on:
+  schedule:
+    # 1. Lun a Vie: 8:00 AM - 6:59 PM (Hora Col) -> 13:00-23:59 UTC
+    - cron: '*/14 13-23 * * 1-5'
+    # 2. Lun a Vie: 7:00 PM - 8:00 PM (Hora Col) -> 00:00-00:59 UTC (Mar-Sab)
+    - cron: '*/14 0 * * 2-6'
+    # 3. Sábados: 8:00 AM - 3:59 PM (Hora Col) -> 13:00-20:59 UTC
+    - cron: '*/14 13-20 * * 6'
+  
+  workflow_dispatch:
+
+jobs:
+  ping-astro:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping AstroURL
+        run: curl -s https://astrourls.onrender.com/ping
