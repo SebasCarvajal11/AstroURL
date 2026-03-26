@@ -2,12 +2,19 @@ name: Keep Render Apps Awake
 
 on:
   schedule:
-    # Se ejecuta cada 14 minutos.
-    # Entre las 13:00 y las 23:00 en horario UTC (que equivale a 8:00 AM - 6:00 PM en Colombia).
-    # Solo de Lunes a Viernes (días 1 al 5).
+    # 1. Lunes a Viernes de 8:00 AM a 6:59 PM (Hora Colombia)
+    # Equivale a 13:00 - 23:59 en UTC (días 1 al 5)
     - cron: '*/14 13-23 * * 1-5'
+    
+    # 2. Lunes a Viernes de 7:00 PM a 8:00 PM (Hora Colombia)
+    # Equivale a 00:00 - 00:59 en UTC DEL DÍA SIGUIENTE (Martes a Sábado, días 2 al 6)
+    - cron: '*/14 0 * * 2-6'
+    
+    # 3. Sábados de 8:00 AM a 3:59 PM (Hora Colombia)
+    # Equivale a 13:00 - 20:59 en UTC (día 6)
+    - cron: '*/14 13-20 * * 6'
   
-  # Esta línea es clave: te permite ejecutar el script manualmente con un botón para probarlo
+  # Botón manual para pruebas
   workflow_dispatch:
 
 jobs:
