@@ -2,9 +2,8 @@ name: Keep Cima CRM Awake
 
 on:
   schedule:
-    # Lun a Vie: 8:00 AM a 4:59 PM (Hora Col) -> 13:00-21:59 UTC
-    # Totalmente optimizado para reclutadores
-    - cron: '*/14 13-21 * * 1-5'
+    # Lunes a Viernes: 8:00 AM - 4:59 PM (Hora Colombia)
+    - cron: '*/8 13-21 * * 1-5'
   
   workflow_dispatch:
 
@@ -13,4 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping CIMA CRM Backend
-        run: curl -s https://cima-crm-backend.onrender.com/ping
+        run: curl -f -I -m 10 https://cima-crm-backend.onrender.com/ping
